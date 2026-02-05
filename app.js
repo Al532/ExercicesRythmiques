@@ -57,7 +57,7 @@ const playKick = (time) => {
   oscillator.type = 'sine';
   oscillator.frequency.setValueAtTime(140, time);
   oscillator.frequency.exponentialRampToValueAtTime(45, time + 0.12);
-  gain.gain.setValueAtTime(1, time);
+  gain.gain.setValueAtTime(0.4, time);
   gain.gain.exponentialRampToValueAtTime(0.001, time + 0.15);
   oscillator.connect(gain);
   gain.connect(masterGain);
@@ -72,8 +72,8 @@ const playHihat = (time) => {
   bufferSource.buffer = noiseBuffer;
   filter.type = 'highpass';
   filter.frequency.value = 7000;
-  gain.gain.setValueAtTime(0.70, time);
-  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.05);
+  gain.gain.setValueAtTime(1, time);
+  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.2);
   bufferSource.connect(filter);
   filter.connect(gain);
   gain.connect(masterGain);
@@ -114,7 +114,7 @@ const playCrash = (time) => {
   filter.frequency.value = 3000;
   const gain = audioContext.createGain();
   gain.gain.setValueAtTime(0.5, time);
-  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.6);
+  gain.gain.exponentialRampToValueAtTime(0.001, time + 1);
   bufferSource.connect(filter);
   filter.connect(gain);
   gain.connect(masterGain);
