@@ -2,6 +2,7 @@ const bpmInput = document.getElementById('bpm');
 const bpmValue = document.getElementById('bpm-value');
 const togglePlayButton = document.getElementById('toggle-play');
 const statusLabel = document.getElementById('status');
+const trackCrash = document.getElementById('track-crash');
 const trackKick = document.getElementById('track-kick');
 const trackHihat = document.getElementById('track-hihat');
 const trackSnare = document.getElementById('track-snare');
@@ -126,7 +127,7 @@ const scheduleStep = (step, time) => {
     playKick(time);
   }
 
-  if (step % 16 === 0) {
+  if (trackCrash.checked && step % 16 === 0) {
     playCrash(time);
   }
 
