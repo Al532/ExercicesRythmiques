@@ -197,7 +197,7 @@ const scheduleMetronome = (exercise, step, time) => {
     playSnare(time);
   }
 
-  if (exercise.tracks.metronome?.checked && step % 4 === 0) {
+  if (step % 4 === 0) {
     const beatSelection = Number(exercise.metronomeOptions.beat?.value || 1) - 1;
     const interval = Number(exercise.metronomeOptions.interval?.value || 1);
     const measureIndex = Math.floor(step / 16);
