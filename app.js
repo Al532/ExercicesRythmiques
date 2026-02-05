@@ -72,7 +72,7 @@ const playHihat = (time) => {
   bufferSource.buffer = noiseBuffer;
   filter.type = 'highpass';
   filter.frequency.value = 7000;
-  gain.gain.setValueAtTime(0.38, time);
+  gain.gain.setValueAtTime(0.70, time);
   gain.gain.exponentialRampToValueAtTime(0.001, time + 0.05);
   bufferSource.connect(filter);
   filter.connect(gain);
