@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rythmes Superposés</title>
+  <title>Exercices rythmiques</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -54,7 +54,7 @@
     <section class="exercise" data-exercise="metronome" role="tabpanel" aria-hidden="true">
       <header>
         <h1>Exercice : Métronome</h1>
-        <p>Choisissez le placement du métronome et activez les instruments.</p>
+        <p>Choisissez le placement du métronome et contrôlez avec le beat.</p>
       </header>
 
       <section class="controls">
@@ -70,17 +70,9 @@
       </section>
 
       <section class="tracks">
-        <label class="track">
-          <input type="checkbox" checked data-track="beat" />
-          <span class="track-name">Beat (kick + charleston)</span>
-        </label>
-        <label class="track">
-          <input type="checkbox" checked data-track="snare" />
-          <span class="track-name">Noires pointées (caisse claire)</span>
-        </label>
         <label class="track track-metronome">
           <input type="checkbox" checked data-track="metronome" />
-          <span class="track-name">Métronome (woodblock)</span>
+          <span class="track-name">Métronome</span>
           <div class="track-options">
             <label class="select-group">
               <span>Placement</span>
@@ -109,6 +101,10 @@
               </select>
             </label>
           </div>
+        </label>
+		        <label class="track">
+          <input type="checkbox" checked data-track="beat" />
+          <span class="track-name">Beat</span>
         </label>
       </section>
     </section>
