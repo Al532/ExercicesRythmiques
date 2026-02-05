@@ -147,8 +147,8 @@ select {
 }
 
 .track-metronome {
-  grid-template-columns: auto 1fr;
-  align-items: start;
+  grid-template-columns: 1fr;
+  gap: 8px;
 }
 
 .track input {
@@ -167,11 +167,23 @@ select {
   margin-top: 8px;
 }
 
+.track-options--phrase {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
 .select-group {
   display: grid;
   gap: 6px;
   font-weight: 600;
   color: #c6ccd8;
+}
+
+.phrase-text {
+  color: #c6ccd8;
+  font-weight: 600;
 }
 
 .tips {
@@ -197,12 +209,17 @@ select {
 
 @media (min-width: 720px) {
   .track-metronome {
-    grid-template-columns: auto minmax(180px, 1fr) auto;
+    grid-template-columns: 1fr;
     align-items: center;
   }
 
   .track-options {
     grid-template-columns: repeat(3, minmax(140px, 1fr));
     margin-top: 0;
+  }
+
+  .track-options--phrase {
+    display: flex;
+    flex-wrap: nowrap;
   }
 }
