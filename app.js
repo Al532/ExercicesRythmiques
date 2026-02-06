@@ -274,7 +274,7 @@ const stopAll = () => {
   });
 };
 
-const setActiveExercise = (targetKey, { shouldPersist = true } = {}) => {
+const setActiveExercise = (targetKey, { shouldPersist = true, shouldUpdateHash = false } = {}) => {
   stopAll();
   exercises.forEach((exercise) => {
     const isActive = exercise.key === targetKey;
@@ -288,6 +288,12 @@ const setActiveExercise = (targetKey, { shouldPersist = true } = {}) => {
   });
   if (shouldPersist) {
     localStorage.setItem('lastExercise', targetKey);
+  }
+  if (shouldUpdateHash) {
+    const index = exercises.findIndex((exercise) => exercise.key === targetKey);
+    if (index !== -1) {
+      window.history.replaceState(null, '', `#${index + 1}`);
+    }
   }
 };
 
@@ -310,15 +316,35 @@ exercises.forEach((exercise) => {
 
 tabs.forEach((tab) => {
   tab.addEventListener('click', () => {
-    setActiveExercise(tab.dataset.target);
+    setActiveExercise(tab.dataset.target, { shouldUpdateHash: true });
   });
 });
 
+const resolveKeyFromHash = () => {
+  const hash = window.location.hash.replace('#', '').trim();
+  if (!hash) {
+    return null;
+  }
+  if (hash === '1' || hash === '2') {
+    const index = Number(hash) - 1;
+    return exercises[index]?.key ?? null;
+  }
+  return exercises.some((exercise) => exercise.key === hash) ? hash : null;
+};
+
+window.addEventListener('hashchange', () => {
+  const keyFromHash = resolveKeyFromHash();
+  if (keyFromHash) {
+    setActiveExercise(keyFromHash, { shouldPersist: false });
+  }
+});
+
+const keyFromHash = resolveKeyFromHash();
 const storedExercise = localStorage.getItem('lastExercise');
 const availableKeys = exercises.map((exercise) => exercise.key);
-const initialKey = availableKeys.includes(storedExercise)
-  ? storedExercise
-  : tabs.find((tab) => tab.classList.contains('is-active'))?.dataset.target;
+const initialKey = keyFromHash
+  || (availableKeys.includes(storedExercise) ? storedExercise : null)
+  || tabs.find((tab) => tab.classList.contains('is-active'))?.dataset.target;
 
 if (initialKey) {
   setActiveExercise(initialKey, { shouldPersist: false });
