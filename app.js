@@ -154,7 +154,7 @@ const playWoodblock = (time) => {
   filter.type = 'bandpass';
   filter.frequency.value = 1200;
   filter.Q.value = 8;
-  gain.gain.setValueAtTime(1, time);
+  gain.gain.setValueAtTime(4, time);
   gain.gain.exponentialRampToValueAtTime(0.001, time + 0.12);
   oscillator.connect(filter);
   filter.connect(gain);
